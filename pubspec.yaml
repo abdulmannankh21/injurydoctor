@@ -40,6 +40,8 @@ dependencies:
   firebase_auth:
   cloud_firestore: 
   shared_preferences:
+  flutter_animation_progress_bar:
+  flutter_alarm_clock:
 
 dev_dependencies:
   flutter_test:
