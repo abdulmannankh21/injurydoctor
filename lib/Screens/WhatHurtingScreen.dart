@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:injurydoctor/Screens/Gender.dart';
 
 class WhatsHurting extends StatefulWidget {
   const WhatsHurting({Key? key}) : super(key: key);
@@ -62,7 +64,9 @@ class _WhatsHurtingState extends State<WhatsHurting> {
                     mainAxisSpacing: 4.0),
                 itemBuilder: (BuildContext context, int index) {
                   return InkWell(
-                    onTap: (){},
+                    onTap: (){
+                      Get.to(const GenderScreen());
+                    },
                     child: Column(
                       children: [
                         SizedBox(
