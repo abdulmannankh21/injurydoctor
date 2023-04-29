@@ -15,9 +15,10 @@ class GenderScreen extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Column(
-
             children: [
-              SizedBox(height: ht*0.15,),
+              SizedBox(
+                height: ht * 0.15,
+              ),
               const Text(
                 'Gender',
                 style: TextStyle(
@@ -45,23 +46,23 @@ class GenderScreen extends StatelessWidget {
                 width: wt * 0.8,
                 child: Custombtn(
                   title: 'Female',
-                  ontap: () {},
+                  ontap: () {
+                    Get.to(const SelectHeight());
+                  },
                   icon: const Icon(
                     Icons.female,
                     color: AppColors.textfieldcolor,
                   ),
                 ),
               ),
-
-
-
-
               SizedBox(
                 height: ht * 0.09,
                 width: wt * 0.8,
                 child: Custombtn(
                   title: 'Other',
-                  ontap: () {},
+                  ontap: () {
+                    Get.to(const SelectHeight());
+                  },
                   icon: const Icon(
                     Icons.transgender,
                     color: AppColors.textfieldcolor,
@@ -80,9 +81,8 @@ class Custombtn extends StatelessWidget {
   final String title;
   var ontap;
   var icon;
-   Custombtn({
-    super.key,required this.title,this.icon,this.ontap
-  });
+
+  Custombtn({super.key, required this.title, this.icon, this.ontap});
 
   @override
   Widget build(BuildContext context) {
@@ -95,19 +95,18 @@ class Custombtn extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(40),
           ),
-          child:  Center(
+          child: Center(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  icon,
-                  Text(
-                    title,
-                    style:const  TextStyle(
-                        color: AppColors.primaryColor,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
-              )),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              icon,
+              Text(
+                title,
+                style: const TextStyle(
+                    color: AppColors.primaryColor, fontWeight: FontWeight.bold),
+              ),
+            ],
+          )),
         ),
       ),
     );

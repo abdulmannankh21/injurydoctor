@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:injurydoctor/Screens/Surve%20Screens/SurveScreen1.dart';
 import 'package:injurydoctor/Screens/Widgets/CustomButton.dart';
 import 'package:injurydoctor/res/colors.dart';
 
@@ -57,7 +59,9 @@ class SelectAge extends StatelessWidget {
                   width: wt * 0.93,
                   child: CustomButton(
                     title: 'Continue',
-                    ontap: () {},
+                    ontap: () {
+                      Get.to(SurveScreen1());
+                    },
                   )),
             ],
           ),

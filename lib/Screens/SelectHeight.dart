@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:injurydoctor/Screens/SelectWeight.dart';
 import 'package:injurydoctor/Screens/Widgets/CustomButton.dart';
 import 'package:injurydoctor/res/colors.dart';
 
@@ -61,14 +62,14 @@ class _SelectHeightState extends State<SelectHeight> {
                   height: ht * 0.60,
                 ),
                 GestureDetector(
-                  onTap: (){},
+                  onTap: () {},
                   child: SizedBox(
                       height: ht * 0.12,
                       width: wt * 0.93,
                       child: CustomButton(
                         title: 'Continue',
                         ontap: () {
-                          Get.to(const SelectHeight());
+                          Get.to(const SelectWeight());
                         },
                       )),
                 ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:injurydoctor/Screens/Surve%20Screens/SurveScreen4.dart';
 import 'package:injurydoctor/Screens/Widgets/CustomButton.dart';
 import 'package:injurydoctor/res/colors.dart';
 
@@ -61,12 +63,14 @@ class _SurveScreen3State extends State<SurveScreen3> {
               SizedBox(
                 height: ht * 0.4,
               ),
-              Slider(value: _currentSliderValue,  onChanged: (double value) {
-                setState(() {
-                  _currentSliderValue = value;
-                });
-              },
-              divisions: 100,
+              Slider(
+                value: _currentSliderValue,
+                onChanged: (double value) {
+                  setState(() {
+                    _currentSliderValue = value;
+                  });
+                },
+                divisions: 100,
                 max: 100,
                 label: _currentSliderValue.round().toString(),
                 activeColor: AppColors.primaryColor,
@@ -74,7 +78,11 @@ class _SurveScreen3State extends State<SurveScreen3> {
               ),
               SizedBox(
                   height: ht * 0.12,
-                  child: CustomButton(title: 'Save', ontap: (){})),
+                  child: CustomButton(
+                      title: 'Save',
+                      ontap: () {
+                        Get.to(SurveScreen4());
+                      })),
             ],
           ),
         ),

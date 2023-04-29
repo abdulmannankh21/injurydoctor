@@ -14,7 +14,9 @@ class SurveScreen4 extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              SizedBox(height: ht*0.05,),
+              SizedBox(
+                height: ht * 0.05,
+              ),
               SizedBox(
                 height: ht * 0.1,
                 width: wt * 0.2,
@@ -27,7 +29,9 @@ class SurveScreen4 extends StatelessWidget {
                   color: AppColors.textfieldcolor,
                 ),
               ),
-              SizedBox(height: ht*0.06,),
+              SizedBox(
+                height: ht * 0.06,
+              ),
               const Text(
                 'How long have you been\nexperiencing pain?',
                 style: TextStyle(
@@ -36,26 +40,27 @@ class SurveScreen4 extends StatelessWidget {
                   color: AppColors.textfieldcolor,
                 ),
               ),
-
-              SizedBox(height: ht*0.2,),
               SizedBox(
-                  height: ht*0.11,
-                  width: wt*0.9,
-                  child: CustomButton(title: 'Less then 1 month', ontap: (){})),
-
+                height: ht * 0.2,
+              ),
               SizedBox(
-                  height: ht*0.11,
-                  width: wt*0.9,
-                  child: CustomButton(title: '1-2 months', ontap: (){})),
+                  height: ht * 0.11,
+                  width: wt * 0.9,
+                  child:
+                      CustomButton(title: 'Less then 1 month', ontap: () {})),
               SizedBox(
-                  height: ht*0.11,
-                  width: wt*0.9,
-                  child: CustomButton(title: '2-3 months', ontap: (){})),
+                  height: ht * 0.11,
+                  width: wt * 0.9,
+                  child: CustomButton(title: '1-2 months', ontap: () {})),
               SizedBox(
-                  height: ht*0.11,
-                  width: wt*0.9,
-                  child: CustomButton(title: 'More then 3 months', ontap: (){})),
-
+                  height: ht * 0.11,
+                  width: wt * 0.9,
+                  child: CustomButton(title: '2-3 months', ontap: () {})),
+              SizedBox(
+                  height: ht * 0.11,
+                  width: wt * 0.9,
+                  child:
+                      CustomButton(title: 'More then 3 months', ontap: () {})),
             ],
           ),
         ),
