@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:injurydoctor/res/colors.dart';
 import 'Widgets/CustomButton.dart';
 import 'Widgets/HomeScreen Widgets/MainText.dart';
 import 'Widgets/HomeScreen Widgets/ProgressBar_BackPain.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final HomeController _controller = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -53,7 +54,7 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
-          const ExpansionTile(
+          ExpansionTile(
             collapsedIconColor: AppColors.textfieldcolor,
             iconColor: AppColors.textfieldcolor,
             title: Text(
@@ -61,10 +62,36 @@ class HomeScreen extends StatelessWidget {
               style: TextStyle(
                   color: AppColors.textfieldcolor, fontWeight: FontWeight.bold),
             ),
+            children: [
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return RadioListTile(
+                    title: Text('Option $index'),
+                    value: index,
+                    groupValue: _controller.selectedPainIndex.value,
+                    onChanged: (value) {
+                      _controller.setSelectedPainIndex(value!);
+                    },
+                  );
+                },
+              ),
+            ],
           ),
           ProgressBar_BackPain_Container(wt: wt, ht: ht),
         ],
       ),
     );
+  }
+}
+
+
+class HomeController extends GetxController {
+
+  var selectedPainIndex = 0.obs;
+
+  void setSelectedPainIndex(int index) {
+    selectedPainIndex.value = index;
   }
 }

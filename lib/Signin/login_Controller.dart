@@ -11,6 +11,7 @@ class LoginController extends GetxController {
   void login() async {
     if (email.value.isEmpty || password.value.isEmpty) {
       Get.snackbar("Error", "Please enter your email and password");
+      Get.toNamed(RouteNames.age);
     } else {
       try {
         UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(

@@ -6,8 +6,18 @@ import 'package:injurydoctor/Screens/TodayScreen.dart';
 import 'package:injurydoctor/Screens/Widgets/CustomButton.dart';
 import 'package:injurydoctor/res/colors.dart';
 
+class SurveScreenController extends GetxController {
+  RxBool isHipPainful = RxBool(false);
+
+  void setHipPainful(bool value) {
+    isHipPainful.value = value;
+  }
+}
+
 class SurveScreen1 extends StatelessWidget {
-  const SurveScreen1({Key? key}) : super(key: key);
+  final controller = Get.put(SurveScreenController());
+
+   SurveScreen1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,21 +58,27 @@ class SurveScreen1 extends StatelessWidget {
                 height: ht * 0.3,
               ),
               SizedBox(
-                  height: ht * 0.11,
-                  width: wt * 0.9,
-                  child: CustomButton(
-                      title: 'Yes',
-                      ontap: () {
-                        Get.to(TodayScreen());
-                      })),
+                height: ht * 0.11,
+                width: wt * 0.9,
+                child: CustomButton(
+                  title: 'Yes',
+                  ontap: () {
+                    controller.setHipPainful(true);
+                    Get.to(TodayScreen());
+                  },
+                ),
+              ),
               SizedBox(
-                  height: ht * 0.11,
-                  width: wt * 0.9,
-                  child: CustomButton(
-                      title: 'No',
-                      ontap: () {
-                        Get.to(SurveScreen2());
-                      })),
+                height: ht * 0.11,
+                width: wt * 0.9,
+                child: CustomButton(
+                  title: 'No',
+                  ontap: () {
+                    controller.setHipPainful(false);
+                    Get.to(SurveScreen2());
+                  },
+                ),
+              ),
             ],
           ),
         ),

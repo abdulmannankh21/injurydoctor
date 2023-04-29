@@ -29,9 +29,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyNavBar(),
-      // initialRoute: RouteNames.splash,
-      // getPages: AppRoutes.getPage,
+      initialRoute: RouteNames.splash,
+      getPages: AppRoutes.getPage,
     );
   }
 }

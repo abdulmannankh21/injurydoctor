@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:injurydoctor/Screens/SelectWeight.dart';
 import 'package:injurydoctor/Screens/Widgets/CustomButton.dart';
 import 'package:injurydoctor/res/colors.dart';
+import 'package:injurydoctor/routes/route_names.dart';
 
-class SelectHeight extends StatefulWidget {
-  const SelectHeight({Key? key}) : super(key: key);
+class SelectHeightController extends GetxController {
+  final TextEditingController heightController = TextEditingController();
+  var height = 0.0.obs;
 
-  @override
-  State<SelectHeight> createState() => _SelectHeightState();
+  void updateHeight() {
+    height.value = double.parse(heightController.text);
+  }
 }
 
-class _SelectHeightState extends State<SelectHeight> {
+class SelectHeight extends GetView<SelectHeightController> {
+  const SelectHeight({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     double ht = MediaQuery.of(context).size.height;
@@ -40,6 +43,7 @@ class _SelectHeightState extends State<SelectHeight> {
                   height: ht * 0.05,
                   width: wt * 0.8,
                   child: TextField(
+                    controller: controller.heightController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       hintText: 'Enter height',
@@ -62,15 +66,16 @@ class _SelectHeightState extends State<SelectHeight> {
                   height: ht * 0.60,
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    controller.updateHeight();
+                    Get.toNamed(RouteNames.gender);
+                  },
                   child: SizedBox(
                       height: ht * 0.12,
                       width: wt * 0.93,
                       child: CustomButton(
                         title: 'Continue',
-                        ontap: () {
-                          Get.to(const SelectWeight());
-                        },
+                        ontap: () {},
                       )),
                 ),
               ],

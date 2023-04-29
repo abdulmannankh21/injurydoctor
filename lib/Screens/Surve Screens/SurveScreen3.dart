@@ -12,6 +12,7 @@ class SurveScreen3 extends StatefulWidget {
 }
 
 class _SurveScreen3State extends State<SurveScreen3> {
+  final SurveScreen3Controller _controller = Get.put(SurveScreen3Controller());
   double _currentSliderValue = 20;
 
   @override
@@ -63,19 +64,19 @@ class _SurveScreen3State extends State<SurveScreen3> {
               SizedBox(
                 height: ht * 0.4,
               ),
-              Slider(
-                value: _currentSliderValue,
+              Obx(() => Slider(
+                value: _controller.painLevel.value,
                 onChanged: (double value) {
                   setState(() {
-                    _currentSliderValue = value;
+                    _controller.painLevel.value = value;
                   });
                 },
                 divisions: 100,
                 max: 100,
-                label: _currentSliderValue.round().toString(),
+                label: _controller.painLevel.value.round().toString(),
                 activeColor: AppColors.primaryColor,
                 inactiveColor: AppColors.textfieldcolor,
-              ),
+              )),
               SizedBox(
                   height: ht * 0.12,
                   child: CustomButton(
@@ -89,4 +90,8 @@ class _SurveScreen3State extends State<SurveScreen3> {
       ),
     );
   }
+}
+
+class SurveScreen3Controller extends GetxController {
+  var painLevel = 20.0.obs;
 }

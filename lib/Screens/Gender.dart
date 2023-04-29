@@ -3,9 +3,12 @@ import 'package:get/get.dart';
 import 'package:injurydoctor/Screens/SelectHeight.dart';
 import 'package:injurydoctor/Screens/Widgets/CustomButton.dart';
 import 'package:injurydoctor/res/colors.dart';
+import 'package:injurydoctor/routes/route_names.dart';
 
 class GenderScreen extends StatelessWidget {
-  const GenderScreen({Key? key}) : super(key: key);
+  final GenderController genderController = Get.put(GenderController());
+
+   GenderScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +36,7 @@ class GenderScreen extends StatelessWidget {
                 child: Custombtn(
                   title: 'Male',
                   ontap: () {
+                    genderController.selectGender('male');
                     Get.to(const SelectHeight());
                   },
                   icon: const Icon(
@@ -47,6 +51,7 @@ class GenderScreen extends StatelessWidget {
                 child: Custombtn(
                   title: 'Female',
                   ontap: () {
+                    genderController.selectGender('female');
                     Get.to(const SelectHeight());
                   },
                   icon: const Icon(
@@ -61,7 +66,8 @@ class GenderScreen extends StatelessWidget {
                 child: Custombtn(
                   title: 'Other',
                   ontap: () {
-                    Get.to(const SelectHeight());
+                    genderController.selectGender('other');
+                    Get.toNamed(RouteNames.hurting);
                   },
                   icon: const Icon(
                     Icons.transgender,
@@ -76,7 +82,14 @@ class GenderScreen extends StatelessWidget {
     );
   }
 }
+class GenderController extends GetxController {
 
+  var selectedGender = 'male'.obs;
+
+  void selectGender(String gender) {
+    selectedGender.value = gender;
+  }
+}
 class Custombtn extends StatelessWidget {
   final String title;
   var ontap;
@@ -97,16 +110,16 @@ class Custombtn extends StatelessWidget {
           ),
           child: Center(
               child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              icon,
-              Text(
-                title,
-                style: const TextStyle(
-                    color: AppColors.primaryColor, fontWeight: FontWeight.bold),
-              ),
-            ],
-          )),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  icon,
+                  Text(
+                    title,
+                    style: const TextStyle(
+                        color: AppColors.primaryColor, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              )),
         ),
       ),
     );

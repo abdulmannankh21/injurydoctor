@@ -20,9 +20,9 @@ class _MyNavBarState extends State<MyNavBar> {
 
   List<Widget> _buildScreens() {
     return [
-      const HomeScreen(),
-      const SetReminder(),
-      const WhatsHurting(),
+       HomeScreen(),
+       SetReminder(),
+       TodayScreen(),
     ];
   }
 

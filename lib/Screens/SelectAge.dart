@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 import 'package:injurydoctor/Screens/Surve%20Screens/SurveScreen1.dart';
 import 'package:injurydoctor/Screens/Widgets/CustomButton.dart';
 import 'package:injurydoctor/res/colors.dart';
+import 'package:injurydoctor/routes/route_names.dart';
+import 'package:injurydoctor/routes/routes.dart';
 
 class SelectAge extends StatelessWidget {
-  const SelectAge({Key? key}) : super(key: key);
+  final AgeController ageController = Get.put(AgeController());
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class SelectAge extends StatelessWidget {
                 width: wt * 0.8,
                 child: TextField(
                   keyboardType: TextInputType.number,
+                  onChanged: (value) => ageController.age.value = int.tryParse(value) ?? 0,
                   decoration: InputDecoration(
                     hintText: 'Enter Age',
                     border: OutlineInputBorder(
@@ -59,14 +62,20 @@ class SelectAge extends StatelessWidget {
                   width: wt * 0.93,
                   child: CustomButton(
                     title: 'Continue',
-                    ontap: () {
-                      Get.to(SurveScreen1());
-                    },
+                    ontap: ageController.age.value != 0 ? () => Get.toNamed(RouteNames.weight) : null,
                   )),
             ],
           ),
         ),
       ),
     );
+  }
+}
+
+class AgeController extends GetxController {
+  var age = 0.obs; // Using an RxInt to observe changes
+
+  void setAge(int newAge) {
+    age.value = newAge; // Updating the value of age
   }
 }

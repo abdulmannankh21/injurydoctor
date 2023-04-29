@@ -9,6 +9,8 @@ class SurveScreen2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(SurveScreen2Controller());
+
     double ht = MediaQuery.of(context).size.height;
     double wt = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -51,7 +53,7 @@ class SurveScreen2 extends StatelessWidget {
                   child: CustomButton(
                       title: 'Yes',
                       ontap: () {
-                        Get.to(SurveScreen3());
+                        controller.goToNextScreen();
                       })),
               SizedBox(
                   height: ht * 0.11,
@@ -59,12 +61,18 @@ class SurveScreen2 extends StatelessWidget {
                   child: CustomButton(
                       title: 'No',
                       ontap: () {
-                        Get.to(SurveScreen3());
+                        controller.goToNextScreen();
                       })),
             ],
           ),
         ),
       ),
     );
+  }
+}
+
+class SurveScreen2Controller extends GetxController {
+  void goToNextScreen() {
+    Get.to(SurveScreen3());
   }
 }

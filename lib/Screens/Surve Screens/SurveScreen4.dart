@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:injurydoctor/Screens/Widgets/CustomButton.dart';
 import 'package:injurydoctor/res/colors.dart';
 
 class SurveScreen4 extends StatelessWidget {
-  const SurveScreen4({Key? key}) : super(key: key);
+  final SurveScreen4Controller controller = Get.put(SurveScreen4Controller());
+
+  SurveScreen4({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,25 +49,38 @@ class SurveScreen4 extends StatelessWidget {
               SizedBox(
                   height: ht * 0.11,
                   width: wt * 0.9,
-                  child:
-                      CustomButton(title: 'Less then 1 month', ontap: () {})),
+                  child: CustomButton(
+                      title: 'Less then 1 month',
+                      ontap: () => controller.setPainDuration('Less then 1 month'))),
               SizedBox(
                   height: ht * 0.11,
                   width: wt * 0.9,
-                  child: CustomButton(title: '1-2 months', ontap: () {})),
+                  child: CustomButton(
+                      title: '1-2 months',
+                      ontap: () => controller.setPainDuration('1-2 months'))),
               SizedBox(
                   height: ht * 0.11,
                   width: wt * 0.9,
-                  child: CustomButton(title: '2-3 months', ontap: () {})),
+                  child: CustomButton(
+                      title: '2-3 months',
+                      ontap: () => controller.setPainDuration('2-3 months'))),
               SizedBox(
                   height: ht * 0.11,
                   width: wt * 0.9,
-                  child:
-                      CustomButton(title: 'More then 3 months', ontap: () {})),
+                  child: CustomButton(
+                      title: 'More then 3 months',
+                      ontap: () => controller.setPainDuration('More then 3 months'))),
             ],
           ),
         ),
       ),
     );
+  }
+}
+class SurveScreen4Controller extends GetxController {
+  var painDuration = ''.obs;
+
+  void setPainDuration(String value) {
+    painDuration.value = value;
   }
 }

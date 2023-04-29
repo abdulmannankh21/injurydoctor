@@ -65,7 +65,7 @@ class _WhatsHurtingState extends State<WhatsHurting> {
                 itemBuilder: (BuildContext context, int index) {
                   return InkWell(
                     onTap: (){
-                      Get.to(const GenderScreen());
+                      Get.to(GenderScreen());
                     },
                     child: Column(
                       children: [
