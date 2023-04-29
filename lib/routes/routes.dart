@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:injurydoctor/SignUp/signup_screen.dart';
+import 'package:injurydoctor/bindings/signup_bindings.dart';
 import 'package:injurydoctor/routes/route_names.dart';
 import '../Signin/login_Screen.dart';
 import '../Splash Screen/splash.dart';
@@ -22,7 +23,7 @@ class AppRoutes {
     GetPage(
       name: RouteNames.signup,
       page: () => SignupScreen(),
-      binding: LoginBindings(),
+      binding: SignupBindings(),
     ),
   ];
 
@@ -33,6 +34,18 @@ class AppRoutes {
       case RouteNames.login:
         return Get.offAllNamed(routeName);
       case RouteNames.signup:
+      case RouteNames.age:
+      case RouteNames.weight:
+      case RouteNames.height:
+      case RouteNames.gender:
+      case RouteNames.hurting:
+      case RouteNames.servey1:
+      case RouteNames.servey2:
+      case RouteNames.servey3:
+      case RouteNames.servey4:
+      case RouteNames.home:
+      case RouteNames.alarm:
+      case RouteNames.todaysexercise:
         return Get.toNamed(routeName);
       default:
         return _errorRoute();
