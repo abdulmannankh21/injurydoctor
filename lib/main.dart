@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:injurydoctor/Screens/Gender.dart';
 import 'package:injurydoctor/Screens/HomeScreen.dart';
+import 'package:injurydoctor/Screens/NavBar.dart';
 import 'package:injurydoctor/Screens/SelectAge.dart';
 import 'package:injurydoctor/Screens/SelectHeight.dart';
 import 'package:injurydoctor/Screens/SelectWeight.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SurveScreen4(),
+      home: MyNavBar(),
       // initialRoute: RouteNames.splash,
       // getPages: AppRoutes.getPage,
     );
