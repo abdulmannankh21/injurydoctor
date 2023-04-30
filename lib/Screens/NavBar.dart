@@ -21,7 +21,7 @@ class _MyNavBarState extends State<MyNavBar> {
   List<Widget> _buildScreens() {
     return [
        HomeScreen(),
-       SetReminder(),
+      SelectAlarm(),
        TodayScreen(),
     ];
   }

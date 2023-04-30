@@ -6,7 +6,7 @@ import 'package:injurydoctor/Screens/TodayScreen.dart';
 import 'package:injurydoctor/Screens/Widgets/CustomButton.dart';
 import 'package:injurydoctor/res/colors.dart';
 
-class SurveScreenController extends GetxController {
+class SurveScreen1Controller extends GetxController {
   RxBool isHipPainful = RxBool(false);
 
   void setHipPainful(bool value) {
@@ -15,7 +15,7 @@ class SurveScreenController extends GetxController {
 }
 
 class SurveScreen1 extends StatelessWidget {
-  final controller = Get.put(SurveScreenController());
+  final controller = Get.put(SurveScreen1Controller());
 
    SurveScreen1({Key? key}) : super(key: key);
 

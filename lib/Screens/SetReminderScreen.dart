@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'Widgets/CustomButton.dart';
 
-class SetReminder extends StatelessWidget {
-  const SetReminder({Key? key}) : super(key: key);
+class SelectAlarm extends StatelessWidget {
+  const SelectAlarm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

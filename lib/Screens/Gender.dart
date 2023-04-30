@@ -5,10 +5,10 @@ import 'package:injurydoctor/Screens/Widgets/CustomButton.dart';
 import 'package:injurydoctor/res/colors.dart';
 import 'package:injurydoctor/routes/route_names.dart';
 
-class GenderScreen extends StatelessWidget {
+class SelectGender extends StatelessWidget {
   final GenderController genderController = Get.put(GenderController());
 
-   GenderScreen({Key? key}) : super(key: key);
+  SelectGender({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

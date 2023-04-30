@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:injurydoctor/Screens/NavBar.dart';
 import 'package:injurydoctor/Screens/Widgets/CustomButton.dart';
 import 'package:injurydoctor/res/colors.dart';
 
@@ -82,5 +83,6 @@ class SurveScreen4Controller extends GetxController {
 
   void setPainDuration(String value) {
     painDuration.value = value;
+    Get.to(MyNavBar());
   }
 }
