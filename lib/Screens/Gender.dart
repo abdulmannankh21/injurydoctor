@@ -37,7 +37,7 @@ class SelectGender extends StatelessWidget {
                   title: 'Male',
                   ontap: () {
                     genderController.selectGender('male');
-                    Get.to(const SelectHeight());
+                    Get.toNamed(RouteNames.hurting);
                   },
                   icon: const Icon(
                     Icons.male,
@@ -52,7 +52,7 @@ class SelectGender extends StatelessWidget {
                   title: 'Female',
                   ontap: () {
                     genderController.selectGender('female');
-                    Get.to(const SelectHeight());
+                    Get.toNamed(RouteNames.hurting);
                   },
                   icon: const Icon(
                     Icons.female,

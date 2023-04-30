@@ -64,7 +64,7 @@ class SurveScreen1 extends StatelessWidget {
                   title: 'Yes',
                   ontap: () {
                     controller.setHipPainful(true);
-                    Get.to(TodayScreen());
+                    Get.to(SurveScreen2());
                   },
                 ),
               ),
