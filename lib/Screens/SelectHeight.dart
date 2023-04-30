@@ -75,7 +75,10 @@ class SelectHeight extends GetView<SelectHeightController> {
                       width: wt * 0.93,
                       child: CustomButton(
                         title: 'Continue',
-                        ontap: () {},
+                        ontap: () {
+                          Get.toNamed(RouteNames.gender);
+                        },
+
                       )),
                 ),
               ],

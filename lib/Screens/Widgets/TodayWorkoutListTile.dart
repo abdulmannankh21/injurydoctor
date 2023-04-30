@@ -4,7 +4,7 @@ import '../../res/colors.dart';
 
 class CustomListTile extends StatelessWidget {
   const CustomListTile({
-    super.key,
+    super.key, required String workout,
   });
 
   @override
