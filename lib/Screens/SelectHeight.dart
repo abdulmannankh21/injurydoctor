@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:injurydoctor/Screens/Widgets/CustomButton.dart';
@@ -9,7 +11,22 @@ class SelectHeightController extends GetxController {
   var height = 0.0.obs;
 
   void updateHeight() {
-    height.value = double.parse(heightController.text);
+    height.value = double.tryParse(heightController.text) ?? 0;
+  }
+
+  Future<void> saveHeight() async {
+    if (height.value != 0) {
+      try {
+        String uid = FirebaseAuth.instance.currentUser!.uid;
+        await FirebaseFirestore.instance
+            .collection('patients')
+            .doc(uid)
+            .set({'height': height.value}, SetOptions(merge: true));
+        Get.offNamed(RouteNames.gender);
+      } catch (e) {
+        Get.snackbar("Error", "Error saving height");
+      }
+    }
   }
 }
 
@@ -25,6 +42,8 @@ class SelectHeight extends GetView<SelectHeightController> {
         child: Center(
           child: SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
                   height: ht * 0.1,
@@ -45,6 +64,7 @@ class SelectHeight extends GetView<SelectHeightController> {
                   child: TextField(
                     controller: controller.heightController,
                     keyboardType: TextInputType.number,
+                    onChanged: (value) => controller.updateHeight(),
                     decoration: InputDecoration(
                       hintText: 'Enter height',
                       border: OutlineInputBorder(
@@ -62,25 +82,16 @@ class SelectHeight extends GetView<SelectHeightController> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: ht * 0.60,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    controller.updateHeight();
-                    Get.toNamed(RouteNames.gender);
-                  },
-                  child: SizedBox(
-                      height: ht * 0.12,
-                      width: wt * 0.93,
-                      child: CustomButton(
-                        title: 'Continue',
-                        ontap: () {
-                          Get.toNamed(RouteNames.gender);
-                        },
 
-                      )),
-                ),
+                SizedBox(
+                    height: ht * 0.12,
+                    width: wt * 0.93,
+                    child: CustomButton(
+                      title: 'Continue',
+                      ontap: controller.saveHeight,
+                      // Disable the button if the height is not valid
+
+                    )),
               ],
             ),
           ),

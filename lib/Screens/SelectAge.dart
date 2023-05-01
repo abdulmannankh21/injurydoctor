@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:injurydoctor/Screens/Surve%20Screens/SurveScreen1.dart';
@@ -17,11 +19,13 @@ class SelectAge extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
                 height: ht * 0.1,
               ),
-              const Text(
+              Text(
                 'Age',
                 style: TextStyle(
                     fontSize: 20,
@@ -55,14 +59,11 @@ class SelectAge extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: ht * 0.60,
-              ),
-              SizedBox(
                   height: ht * 0.12,
                   width: wt * 0.93,
                   child: CustomButton(
                     title: 'Continue',
-                    ontap: ageController.age.value != 0 ? () => Get.toNamed(RouteNames.weight) : null,
+                    ontap: ageController.saveAge,
                   )),
             ],
           ),
@@ -78,4 +79,19 @@ class AgeController extends GetxController {
   void setAge(int newAge) {
     age.value = newAge; // Updating the value of age
   }
+  void saveAge() async {
+    if (age.value != 0) {
+      try {
+        String uid = FirebaseAuth.instance.currentUser!.uid;
+        await FirebaseFirestore.instance
+            .collection('patients')
+            .doc(uid)
+            .set({'age': age.value}, SetOptions(merge: true));
+        Get.offNamed(RouteNames.weight);
+      } catch (e) {
+        Get.snackbar("Error", "Error saving age");
+      }
+    }
+  }
+
 }

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,6 +20,8 @@ class SelectWeight extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
                 height: ht * 0.1,
@@ -57,17 +61,13 @@ class SelectWeight extends StatelessWidget {
                   },
                 ),
               ),
-              SizedBox(
-                height: ht * 0.60,
-              ),
+
               SizedBox(
                   height: ht * 0.12,
                   width: wt * 0.93,
                   child: CustomButton(
                     title: 'Continue',
-                    ontap: () {
-                      Get.toNamed(RouteNames.height);
-                    },
+                    ontap: controller.saveWeight,
                   )),
             ],
           ),
@@ -82,5 +82,19 @@ class SelectWeightController extends GetxController {
 
   void updateWeight(String value) {
     weight.value = value;
+  }
+  void saveWeight() async {
+    if (weight.value != 0) {
+      try {
+        String uid = FirebaseAuth.instance.currentUser!.uid;
+        await FirebaseFirestore.instance
+            .collection('patients')
+            .doc(uid)
+            .set({'weight': weight.value}, SetOptions(merge: true));
+        Get.offNamed(RouteNames.height);
+      } catch (e) {
+        Get.snackbar("Error", "Error saving weight");
+      }
+    }
   }
 }
