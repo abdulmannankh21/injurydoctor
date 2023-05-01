@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:injurydoctor/Screens/NavBar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../res/res.dart';
 import '../routes/route_names.dart';
@@ -12,10 +14,19 @@ class SplashPresenterImpl extends SplashController with StateMixin<SplashScreen>
   @override
   void initialize(BuildContext context) async {
     initAppResources(context);
-    navigateToLoginAfterDelay();
+    getCurrentUser();
 
   }
-
+  User? getCurrentUser() {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      Get.off(MyNavBar());
+      return user;
+    } else {
+      navigateToLoginAfterDelay();
+      return null;
+    }
+  }
   void initAppResources(BuildContext context) {
     if (isInitialized) {
       return;

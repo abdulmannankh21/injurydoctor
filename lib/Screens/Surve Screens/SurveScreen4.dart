@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injurydoctor/Screens/NavBar.dart';
 import 'package:injurydoctor/Screens/Widgets/CustomButton.dart';
 import 'package:injurydoctor/res/colors.dart';
@@ -11,6 +13,9 @@ class SurveScreen4 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final arguments = Get.arguments as Map<String, dynamic>;
+    final name = arguments['name'] as String;
+    final image = arguments['image'] as String;
     double ht = MediaQuery.of(context).size.height;
     double wt = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -24,10 +29,10 @@ class SurveScreen4 extends StatelessWidget {
               SizedBox(
                 height: ht * 0.1,
                 width: wt * 0.2,
-                child: Image.asset('assets/ex2.jpg'),
+                child: Image.asset(image),
               ),
-              const Text(
-                'Hip',
+              Text(
+                name ,
                 style: TextStyle(
                   fontSize: 16,
                   color: AppColors.textfieldcolor,
@@ -78,11 +83,15 @@ class SurveScreen4 extends StatelessWidget {
     );
   }
 }
+
 class SurveScreen4Controller extends GetxController {
   var painDuration = ''.obs;
 
   void setPainDuration(String value) {
     painDuration.value = value;
-    Get.to(MyNavBar());
+    String uid = FirebaseAuth.instance.currentUser!.uid;
+    FirebaseFirestore.instance.collection('patients').doc(uid).set({
+      'painduration': value
+    },SetOptions(merge: true)).then((value) => Get.to(MyNavBar()));
   }
 }

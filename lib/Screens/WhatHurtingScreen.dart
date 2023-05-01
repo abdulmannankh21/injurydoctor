@@ -43,7 +43,8 @@ class WhatsHurting extends StatelessWidget {
                   return InkWell(
                     onTap: () {
                       controller.setSelectedBodyPart(names[index]); //update the selected body part
-                      Get.toNamed(RouteNames.servey1);
+                      Get.toNamed(RouteNames.servey1,
+                          arguments: {'name': names[index], 'image': images[index]});
                     },
                     child: Column(
                       children: [
