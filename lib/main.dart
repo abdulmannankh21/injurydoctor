@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:injurydoctor/Screens/Gender.dart';
@@ -17,7 +18,9 @@ import 'Screens/Surve Screens/SurveScreen3.dart';
 import 'Screens/Surve Screens/SurveScreen4.dart';
 import 'Screens/WhatHurtingScreen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 

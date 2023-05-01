@@ -1,8 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:injurydoctor/Screens/SelectHeight.dart';
-import 'package:injurydoctor/Screens/Widgets/CustomButton.dart';
-import 'package:injurydoctor/res/colors.dart';
 import 'package:injurydoctor/routes/route_names.dart';
 
 class SelectGender extends StatelessWidget {
@@ -18,6 +17,8 @@ class SelectGender extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
                 height: ht * 0.15,
@@ -27,7 +28,6 @@ class SelectGender extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.textfieldcolor,
                 ),
               ),
               SizedBox(
@@ -37,11 +37,10 @@ class SelectGender extends StatelessWidget {
                   title: 'Male',
                   ontap: () {
                     genderController.selectGender('male');
-                    Get.toNamed(RouteNames.hurting);
+                    genderController.saveGender();
                   },
                   icon: const Icon(
                     Icons.male,
-                    color: AppColors.textfieldcolor,
                   ),
                 ),
               ),
@@ -52,11 +51,10 @@ class SelectGender extends StatelessWidget {
                   title: 'Female',
                   ontap: () {
                     genderController.selectGender('female');
-                    Get.toNamed(RouteNames.hurting);
+                    genderController.saveGender();
                   },
                   icon: const Icon(
                     Icons.female,
-                    color: AppColors.textfieldcolor,
                   ),
                 ),
               ),
@@ -67,11 +65,10 @@ class SelectGender extends StatelessWidget {
                   title: 'Other',
                   ontap: () {
                     genderController.selectGender('other');
-                    Get.toNamed(RouteNames.hurting);
+                    genderController.saveGender();
                   },
                   icon: const Icon(
                     Icons.transgender,
-                    color: AppColors.textfieldcolor,
                   ),
                 ),
               ),
@@ -82,20 +79,36 @@ class SelectGender extends StatelessWidget {
     );
   }
 }
-class GenderController extends GetxController {
 
+class GenderController extends GetxController {
   var selectedGender = 'male'.obs;
 
   void selectGender(String gender) {
     selectedGender.value = gender;
   }
+
+  void saveGender() async {
+    if (selectedGender.value.toString() != " ") {
+      try {
+        String uid = FirebaseAuth.instance.currentUser!.uid;
+        await FirebaseFirestore.instance
+            .collection('patients')
+            .doc(uid)
+            .set({'gender': selectedGender.value.toString()}, SetOptions(merge: true));
+        Get.offNamed(RouteNames.hurting);
+      } catch (e) {
+        Get.snackbar("Error", "Error saving weight");
+      }
+    }
+  }
 }
+
 class Custombtn extends StatelessWidget {
   final String title;
   var ontap;
   var icon;
 
-  Custombtn({super.key, required this.title, this.icon, this.ontap});
+  Custombtn({Key? key, required this.title, this.icon, this.ontap});
 
   @override
   Widget build(BuildContext context) {
@@ -109,17 +122,19 @@ class Custombtn extends StatelessWidget {
             borderRadius: BorderRadius.circular(40),
           ),
           child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  icon,
-                  Text(
-                    title,
-                    style: const TextStyle(
-                        color: AppColors.primaryColor, fontWeight: FontWeight.bold),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                icon,
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
                   ),
-                ],
-              )),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

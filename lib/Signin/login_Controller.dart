@@ -11,18 +11,17 @@ class LoginController extends GetxController {
   void login() async {
     if (email.value.isEmpty || password.value.isEmpty) {
       Get.snackbar("Error", "Please enter your email and password");
-      Get.toNamed(RouteNames.age);
     } else {
       try {
         UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: email.value,
           password: password.value,
         );
-        // if (userCredential.user != null) {
-        //   AppRoutes.appRoutes(RouteNames.navigation);
-        // } else {
-        //   Get.snackbar("Error", "Invalid credentials");
-        // }
+        if (userCredential.user != null) {
+          Get.toNamed(RouteNames.age);
+        } else {
+          Get.snackbar("Error", "Invalid credentials");
+        }
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
           Get.snackbar("Error", "User not found for provided email address");
