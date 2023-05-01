@@ -16,7 +16,7 @@ class ProgressBar_BackPain_Container extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: wt * 0.9,
-      height: ht * 0.2,
+      height: ht * 0.25,
       color: AppColors.bgColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

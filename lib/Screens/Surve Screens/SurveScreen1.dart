@@ -5,24 +5,28 @@ import 'package:injurydoctor/Screens/Surve%20Screens/SurveScreen2.dart';
 import 'package:injurydoctor/Screens/TodayScreen.dart';
 import 'package:injurydoctor/Screens/Widgets/CustomButton.dart';
 import 'package:injurydoctor/res/colors.dart';
+import 'package:injurydoctor/routes/route_names.dart';
 
 class SurveScreen1Controller extends GetxController {
-  RxBool isHipPainful = RxBool(false);
+  RxBool isPainful = RxBool(false);
 
-  void setHipPainful(bool value) {
-    isHipPainful.value = value;
+  void setPainful(bool value) {
+    isPainful.value = value;
   }
 }
 
 class SurveScreen1 extends StatelessWidget {
   final controller = Get.put(SurveScreen1Controller());
 
-   SurveScreen1({Key? key}) : super(key: key);
+  SurveScreen1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     double ht = MediaQuery.of(context).size.height;
     double wt = MediaQuery.of(context).size.width;
+    final arguments = Get.arguments as Map<String, dynamic>;
+    final name = arguments['name'] as String;
+    final image = arguments['image'] as String;
     return Scaffold(
       body: Center(
         child: SafeArea(
@@ -34,10 +38,10 @@ class SurveScreen1 extends StatelessWidget {
               SizedBox(
                 height: ht * 0.1,
                 width: wt * 0.2,
-                child: Image.asset('assets/ex2.jpg'),
+                child: Image.asset(image),
               ),
-              const Text(
-                'Hip',
+              Text(
+                name,
                 style: TextStyle(
                   fontSize: 16,
                   color: AppColors.textfieldcolor,
@@ -46,8 +50,8 @@ class SurveScreen1 extends StatelessWidget {
               SizedBox(
                 height: ht * 0.06,
               ),
-              const Text(
-                'Does poking or pressing the tendons\nor muscles around the hip causes\npain?',
+               Text(
+                'Does poking or pressing the tendons\nor muscles around the ' + name + ' causes\npain?',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
@@ -63,8 +67,8 @@ class SurveScreen1 extends StatelessWidget {
                 child: CustomButton(
                   title: 'Yes',
                   ontap: () {
-                    controller.setHipPainful(true);
-                    Get.to(SurveScreen2());
+                    controller.setPainful(true);
+                    Get.toNamed(RouteNames.servey2, arguments: arguments);
                   },
                 ),
               ),
@@ -74,8 +78,8 @@ class SurveScreen1 extends StatelessWidget {
                 child: CustomButton(
                   title: 'No',
                   ontap: () {
-                    controller.setHipPainful(false);
-                    Get.to(SurveScreen2());
+                    controller.setPainful(false);
+                    Get.toNamed(RouteNames.hurting);
                   },
                 ),
               ),

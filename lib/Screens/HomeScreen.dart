@@ -42,43 +42,23 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
-                  height: ht * 0.12,
-                  width: wt * 1,
-                  color: AppColors.textfieldcolor,
-                  child: CustomButton(
-                    title: 'Start',
-                    ontap: () {},
-                  ),
-                ),
               ],
             ),
           ),
-          ExpansionTile(
-            collapsedIconColor: AppColors.textfieldcolor,
-            iconColor: AppColors.textfieldcolor,
-            title: Text(
-              'Pain in your hip joint',
-              style: TextStyle(
-                  color: AppColors.textfieldcolor, fontWeight: FontWeight.bold),
-            ),
+          SizedBox(height: ht * 0.04),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return RadioListTile(
-                    title: Text('Option $index'),
-                    value: index,
-                    groupValue: _controller.selectedPainIndex.value,
-                    onChanged: (value) {
-                      _controller.setSelectedPainIndex(value!);
-                    },
-                  );
-                },
+              Text(
+                'Pain in your hip joint',
+                style: TextStyle(fontSize: 20,
+                    color: AppColors.textfieldcolor, fontWeight: FontWeight.bold),
               ),
             ],
           ),
+          SizedBox(height: ht * 0.04),
+
           ProgressBar_BackPain_Container(wt: wt, ht: ht),
         ],
       ),
