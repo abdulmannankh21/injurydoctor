@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:injurydoctor/Screens/Widgets/TodayWorkoutListTile.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injurydoctor/res/colors.dart';
 
-
 import 'Widgets/CustomButton.dart';
+import 'Widgets/TodayWorkoutListTile.dart';
 
 class TodayScreen extends StatelessWidget {
   final TodayController todayController = Get.put(TodayController());
@@ -13,6 +13,8 @@ class TodayScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CollectionReference exercisesRef = FirebaseFirestore.instance.collection('exercise');
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.bgColor,
@@ -27,13 +29,34 @@ class TodayScreen extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             Expanded(
-              child: Obx(() => ListView.builder(
-                itemCount: todayController.workouts.length,
-                itemBuilder: (context, index) {
-                  final workout = todayController.workouts[index];
-                  return CustomListTile(workout: workout);
+              child: StreamBuilder<QuerySnapshot>(
+                stream: exercisesRef.snapshots(),
+                builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.hasError) {
+                    return Text('Something went wrong');
+                  }
+
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Text('Loading');
+                  }
+
+                  final workouts = snapshot.data!.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+
+                  return ListView.builder(
+                    itemCount: workouts.length,
+                    itemBuilder: (context, index) {
+                      final workout = workouts[index];
+                      return CustomListTile(
+                        exercise: workout['exercise'] as String,
+                        img: workout['img'] as String,
+                        tip: workout['tip'] as String,
+                        direction: workout['direction'],
+                        muscles: workout['muscles'],
+                      );
+                    },
+                  );
                 },
-              )),
+              ),
             ),
             CustomButton(
               title: 'Finish Workout',
@@ -50,12 +73,6 @@ class TodayScreen extends StatelessWidget {
 }
 
 class TodayController extends GetxController {
-  final workouts = <String>[].obs;
-
-  void addWorkout(String workout) {
-    workouts.add(workout);
-  }
-
   void finishWorkout() {
     // Implement your logic to finish the workout here
   }

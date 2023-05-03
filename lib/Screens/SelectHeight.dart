@@ -67,6 +67,7 @@ class SelectHeight extends GetView<SelectHeightController> {
                     onChanged: (value) => controller.updateHeight(),
                     decoration: InputDecoration(
                       hintText: 'Enter height',
+                      suffixIcon:Text("Feet") ,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: const BorderSide(

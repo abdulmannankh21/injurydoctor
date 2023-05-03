@@ -6,11 +6,13 @@ class ProgressBar_BackPain_Container extends StatelessWidget {
   const ProgressBar_BackPain_Container({
     super.key,
     required this.wt,
-    required this.ht,
+    required this.ht, required this.image, required this.injuryname,
   });
 
   final double wt;
   final double ht;
+  final String image;
+  final String injuryname;
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +24,14 @@ class ProgressBar_BackPain_Container extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ListTile(
-            leading: Image.asset('assets/hipjointpain.jpg'),
-            title: const Text(
-              'Back Pain',
+            leading: Image.asset(image),
+            title:  Text(
+              injuryname,
               style: TextStyle(
                   color: AppColors.textfieldcolor, fontSize: 12),
             ),
             subtitle: const Text(
-              'Mobility',
+              'Exercise',
               style: TextStyle(
                   color: AppColors.textfieldcolor,
                   fontSize: 16,
@@ -54,19 +56,24 @@ class ProgressBar_BackPain_Container extends StatelessWidget {
             child: FAProgressBar(
               size: 15,
               progressColor: AppColors.textfieldcolor,
-              currentValue: 100,
+              currentValue: 20,
               displayText: '%',
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 110, vertical: 20),
-            child: Text(
-              'Learn more about phase 1',
-              style: TextStyle(
-                  color: AppColors.textfieldcolor,
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold),
-            ),
+          SizedBox(
+            height: ht * 0.03,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Learn more about phase 1',
+                style: TextStyle(
+                    color: AppColors.textfieldcolor,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
           ),
         ],
       ),
