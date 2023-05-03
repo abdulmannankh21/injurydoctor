@@ -43,6 +43,7 @@ class SelectAge extends StatelessWidget {
                   onChanged: (value) => ageController.age.value = int.tryParse(value) ?? 0,
                   decoration: InputDecoration(
                     hintText: 'Enter Age',
+                    suffixIcon:Text("Years") ,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
                       borderSide: const BorderSide(

@@ -3,30 +3,28 @@ import 'package:flutter/material.dart';
 import '../../res/colors.dart';
 
 class CustomListTile extends StatelessWidget {
-  const CustomListTile({
-    super.key, required String workout,
+   CustomListTile({
+    super.key, required this.exercise, required this.img, required this.tip,required this.direction,required this.muscles
   });
+  final String exercise;
+  final String img;
+  final String tip;
+  List direction = [];
+  List muscles = [];
+
 
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
       collapsedIconColor: AppColors.textfieldcolor,
       iconColor: AppColors.textfieldcolor,
-      leading: SizedBox(
-          height: MediaQuery.of(context).size.height * 0.05,
-          child: Image.asset('assets/hipjointpain.jpg')),
-      title: const Text(
-        'Estimated Time',
+      title:  Text(
+        exercise,
         style: TextStyle(
           fontSize: 14,
         ),
       ),
-      subtitle: const Text(
-        '25 Minutes',
-        style: TextStyle(
-          fontSize: 14,
-        ),
-      ),
+
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -38,12 +36,22 @@ class CustomListTile extends StatelessWidget {
                   SizedBox(
                       height: MediaQuery.of(context).size.height * 0.1,
                       width: MediaQuery.of(context).size.width * 0.4,
-                      child: Image.asset('assets/ex1.jpg')),
+                      child: Image.asset(img)),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.1,
                     width: MediaQuery.of(context).size.width * 0.4,
-                    child: const Text(
-                      'We know daily exercise is good for optimizing\n health. But with so many options \nand limitless information available, it’s easy',
+                    child:  Text(
+                      direction as String,
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child:  Text(
+                      tip,
                       style: TextStyle(
                         fontSize: 14,
                       ),
@@ -60,9 +68,8 @@ class CustomListTile extends StatelessWidget {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.1,
                     width: MediaQuery.of(context).size.width * 0.4,
-                    child: const Text(
-                      'We know daily exercise is good for optimizing\n health. But with so many options \nand limitless information available, it’s easy',
-                      style: TextStyle(
+                    child: Text(
+                      muscles as String ,style: TextStyle(
                         fontSize: 14,
                       ),
                     ),

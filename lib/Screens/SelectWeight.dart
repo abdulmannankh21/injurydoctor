@@ -43,6 +43,7 @@ class SelectWeight extends StatelessWidget {
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     hintText: 'Enter Weight',
+                    suffixIcon:Text("Kg") ,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
                       borderSide: const BorderSide(
