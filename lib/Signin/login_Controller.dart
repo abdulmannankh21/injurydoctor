@@ -18,7 +18,7 @@ class LoginController extends GetxController {
           password: password.value,
         );
         if (userCredential.user != null) {
-          Get.toNamed(RouteNames.age);
+          Get.toNamed(RouteNames.hurting);
         } else {
           Get.snackbar("Error", "Invalid credentials");
         }

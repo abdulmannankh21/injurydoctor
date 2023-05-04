@@ -62,14 +62,28 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: ht * 0.04),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              ExpansionTile(
+                collapsedIconColor: AppColors.textfieldcolor,
+                iconColor: AppColors.textfieldcolor,
+                title: Text(
+                  'Pain in your ' + bodypartname,
+                  style: TextStyle(
+                      color: AppColors.textfieldcolor, fontWeight: FontWeight.bold),
+                ),
                 children: [
-                  Text(
-                    'Pain in your ' + bodypartname,
-                    style: TextStyle(fontSize: 20,
-                        color: AppColors.textfieldcolor, fontWeight: FontWeight.bold),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: 5,
+                    itemBuilder: (context, index) {
+                      return RadioListTile(
+                        title: Text('Option $index'),
+                        value: index,
+                        groupValue: _controller.selectedPainIndex.value,
+                        onChanged: (value) {
+                          _controller.setSelectedPainIndex(value!);
+                        },
+                      );
+                    },
                   ),
                 ],
               ),

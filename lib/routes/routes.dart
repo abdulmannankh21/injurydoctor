@@ -16,6 +16,7 @@ import 'package:injurydoctor/bindings/all%20bindings.dart';
 import 'package:injurydoctor/bindings/signup_bindings.dart';
 import 'package:injurydoctor/routes/route_names.dart';
 import '../Screens/Surve Screens/SurveScreen3.dart';
+import '../Screens/Surve Screens/SurveScreen5.dart';
 import '../Signin/login_Screen.dart';
 import '../Splash Screen/splash.dart';
 import '../bindings/login_bindings.dart';
@@ -82,6 +83,11 @@ class AppRoutes {
       name: RouteNames.servey4,
       page: () => SurveScreen4(),
       binding: Servey4Bindings(),
+    ),
+    GetPage(
+      name: RouteNames.servey5,
+      page: () => SurveScreen5(),
+      binding: Servey5Bindings(),
     ),
     GetPage(
       name: RouteNames.home,

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:injurydoctor/Screens/Gender.dart';
 import 'package:injurydoctor/Screens/NavBar.dart';
 import 'package:injurydoctor/Screens/Widgets/CustomButton.dart';
 import 'package:injurydoctor/res/colors.dart';
@@ -92,6 +93,6 @@ class SurveScreen4Controller extends GetxController {
     String uid = FirebaseAuth.instance.currentUser!.uid;
     FirebaseFirestore.instance.collection('patients').doc(uid).set({
       'painduration': value
-    },SetOptions(merge: true)).then((value) => Get.to(MyNavBar()));
+    },SetOptions(merge: true)).then((value) => Get.to(SelectGender()));
   }
 }

@@ -47,11 +47,11 @@ class TodayScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final workout = workouts[index];
                       return CustomListTile(
-                        exercise: workout['exercise'] as String,
-                        img: workout['img'] as String,
-                        tip: workout['tip'] as String,
-                        direction: workout['direction'],
-                        muscles: workout['muscles'],
+                          exercise: workout['exercise_name'] as String,
+                          img: workout['img_url'] as String,
+                          tip: workout['tips'] as String,
+                          direction: workout['directions'],
+                          muscles: workout['muscles'],
                       );
                     },
                   );

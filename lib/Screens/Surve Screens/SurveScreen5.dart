@@ -7,14 +7,13 @@ import 'package:injurydoctor/Screens/Widgets/CustomButton.dart';
 import 'package:injurydoctor/res/colors.dart';
 
 import '../../routes/route_names.dart';
-import 'SurveScreen5.dart';
 
-class SurveScreen2 extends StatelessWidget {
-  const SurveScreen2({Key? key}) : super(key: key);
+class SurveScreen5 extends StatelessWidget {
+  const SurveScreen5({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(SurveScreen2Controller());
+    final controller = Get.put(SurveScreen5Controller());
     final arguments = Get.arguments as Map<String, dynamic>;
     final name = arguments['name'] as String;
     final image = arguments['image'] as String;
@@ -44,7 +43,7 @@ class SurveScreen2 extends StatelessWidget {
                 height: ht * 0.06,
               ),
               Text(
-                'Has a medical professional\ndetermined that you can start\nexercise?',
+                'Please proceed upon\nacknowledgement from medical\nprofessional',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
@@ -58,31 +57,21 @@ class SurveScreen2 extends StatelessWidget {
                   height: ht * 0.11,
                   width: wt * 0.9,
                   child: CustomButton(
-                      title: 'Yes',
+                      title: 'Proceed',
                       ontap: () async {
                         bool value = true;
                         controller.setMedicalProfessionalDetermination(value);
-                        String uid = FirebaseAuth.instance.currentUser!.uid;
-                        await FirebaseFirestore.instance
-                            .collection('patients')
-                            .doc(uid)
-                            .set({'determination': value},SetOptions(merge: true));
                         Get.to(SurveScreen3(), arguments: arguments);
                       })),
               SizedBox(
                   height: ht * 0.11,
                   width: wt * 0.9,
                   child: CustomButton(
-                      title: 'No',
-                      ontap: () async {
+                      title: 'Exit',
+                      ontap: () {
                         bool value = false;
                         controller.setMedicalProfessionalDetermination(value);
-                        Get.toNamed(RouteNames.servey5, arguments: arguments);
-                        await FirebaseFirestore.instance
-                            .collection('patients')
-                            .doc('patient_id')
-                            .update({'isMedicalProfessionalDetermination': value});
-
+                        Get.toNamed(RouteNames.hurting);
                       })),
             ],
           ),
@@ -92,7 +81,7 @@ class SurveScreen2 extends StatelessWidget {
   }
 }
 
-class SurveScreen2Controller extends GetxController {
+class SurveScreen5Controller extends GetxController {
   RxBool isMedicalProfessionalDetermination = RxBool(false);
 
   void setMedicalProfessionalDetermination(bool value) {
