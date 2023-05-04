@@ -22,7 +22,7 @@ class SelectHeightController extends GetxController {
             .collection('patients')
             .doc(uid)
             .set({'height': height.value}, SetOptions(merge: true));
-        Get.offNamed(RouteNames.gender);
+        Get.offNamed(RouteNames.weight);
       } catch (e) {
         Get.snackbar("Error", "Error saving height");
       }
@@ -61,23 +61,25 @@ class SelectHeight extends GetView<SelectHeightController> {
                 SizedBox(
                   height: ht * 0.05,
                   width: wt * 0.8,
-                  child: TextField(
-                    controller: controller.heightController,
-                    keyboardType: TextInputType.number,
-                    onChanged: (value) => controller.updateHeight(),
-                    decoration: InputDecoration(
-                      hintText: 'Enter height',
-                      suffixIcon:Text("Feet") ,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: const BorderSide(
-                          color: AppColors.textfieldcolor,
+                  child: Center(
+                    child: TextField(
+                      controller: controller.heightController,
+                      keyboardType: TextInputType.number,
+                      onChanged: (value) => controller.updateHeight(),
+                      decoration: InputDecoration(
+                        hintText: 'Enter height',
+                        suffixIcon:Text("Feet") ,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: const BorderSide(
+                            color: AppColors.textfieldcolor,
+                          ),
                         ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: const BorderSide(
-                          color: AppColors.textfieldcolor,
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: const BorderSide(
+                            color: AppColors.textfieldcolor,
+                          ),
                         ),
                       ),
                     ),

@@ -13,6 +13,7 @@ class RouteNames{
   static const servey2 = '/servey2';
   static const servey3 = '/servey3';
   static const servey4 = '/servey4';
+  static const servey5 = '/servey5';
   static const home = '/home';
   static const alarm = '/alarm';
   static const todaysexercise = '/todaysexercise';

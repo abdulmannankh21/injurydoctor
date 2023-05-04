@@ -95,7 +95,7 @@ class GenderController extends GetxController {
             .collection('patients')
             .doc(uid)
             .set({'gender': selectedGender.value.toString()}, SetOptions(merge: true));
-        Get.offNamed(RouteNames.hurting);
+        Get.offNamed(RouteNames.height);
       } catch (e) {
         Get.snackbar("Error", "Error saving weight");
       }

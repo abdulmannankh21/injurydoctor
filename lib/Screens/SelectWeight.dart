@@ -39,27 +39,29 @@ class SelectWeight extends StatelessWidget {
               SizedBox(
                 height: ht * 0.05,
                 width: wt * 0.8,
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    hintText: 'Enter Weight',
-                    suffixIcon:Text("Kg") ,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: const BorderSide(
-                        color: AppColors.textfieldcolor,
+                child: Center(
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      hintText: 'Enter Weight',
+                      suffixIcon:Text("Kg") ,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: const BorderSide(
+                          color: AppColors.textfieldcolor,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: const BorderSide(
+                          color: AppColors.textfieldcolor,
+                        ),
                       ),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: const BorderSide(
-                        color: AppColors.textfieldcolor,
-                      ),
-                    ),
+                    onChanged: (value) {
+                      controller.updateWeight(value);
+                    },
                   ),
-                  onChanged: (value) {
-                    controller.updateWeight(value);
-                  },
                 ),
               ),
 
@@ -92,7 +94,7 @@ class SelectWeightController extends GetxController {
             .collection('patients')
             .doc(uid)
             .set({'weight': weight.value}, SetOptions(merge: true));
-        Get.offNamed(RouteNames.height);
+        Get.offNamed(RouteNames.age);
       } catch (e) {
         Get.snackbar("Error", "Error saving weight");
       }

@@ -12,6 +12,7 @@ import '../Screens/Surve Screens/SurveScreen1.dart';
 import '../Screens/Surve Screens/SurveScreen2.dart';
 import '../Screens/Surve Screens/SurveScreen3.dart';
 import '../Screens/Surve Screens/SurveScreen4.dart';
+import '../Screens/Surve Screens/SurveScreen5.dart';
 
 class AgeBindings extends Bindings {
   @override
@@ -82,6 +83,14 @@ class Servey4Bindings extends Bindings {
   void dependencies() {
     Get.lazyPut<SurveScreen4Controller>(
           () => SurveScreen4Controller(),
+    );
+  }
+}
+class Servey5Bindings extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<SurveScreen5Controller>(
+          () => SurveScreen5Controller(),
     );
   }
 }

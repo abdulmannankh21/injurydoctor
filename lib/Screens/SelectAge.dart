@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:injurydoctor/Screens/NavBar.dart';
 import 'package:injurydoctor/Screens/Surve%20Screens/SurveScreen1.dart';
 import 'package:injurydoctor/Screens/Widgets/CustomButton.dart';
 import 'package:injurydoctor/res/colors.dart';
@@ -38,22 +39,24 @@ class SelectAge extends StatelessWidget {
               SizedBox(
                 height: ht * 0.05,
                 width: wt * 0.8,
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  onChanged: (value) => ageController.age.value = int.tryParse(value) ?? 0,
-                  decoration: InputDecoration(
-                    hintText: 'Enter Age',
-                    suffixIcon:Text("Years") ,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: const BorderSide(
-                        color: AppColors.textfieldcolor,
+                child: Center(
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    onChanged: (value) => ageController.age.value = int.tryParse(value) ?? 0,
+                    decoration: InputDecoration(
+                      hintText: 'Enter Age',
+                      suffixIcon:Text("Years") ,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: const BorderSide(
+                          color: AppColors.textfieldcolor,
+                        ),
                       ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: const BorderSide(
-                        color: AppColors.textfieldcolor,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: const BorderSide(
+                          color: AppColors.textfieldcolor,
+                        ),
                       ),
                     ),
                   ),
@@ -88,7 +91,7 @@ class AgeController extends GetxController {
             .collection('patients')
             .doc(uid)
             .set({'age': age.value}, SetOptions(merge: true));
-        Get.offNamed(RouteNames.weight);
+        Get.to(MyNavBar());
       } catch (e) {
         Get.snackbar("Error", "Error saving age");
       }
