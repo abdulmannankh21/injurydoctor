@@ -84,7 +84,7 @@ class TodayScreen extends StatelessWidget {
                   title: 'Finish Workout',
                   ontap: () {
                     todayController.finishWorkout();
-                    Get.toNamed(RouteNames.home);
+                    Get.toNamed(RouteNames.hurting);
                   },
                 ),
               ],
