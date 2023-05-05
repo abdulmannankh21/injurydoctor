@@ -13,7 +13,8 @@ class TodayScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference exercisesRef = FirebaseFirestore.instance.collection('exercise');
+    CollectionReference exercisesRef =
+        FirebaseFirestore.instance.collection('exercise');
 
     return SafeArea(
       child: Scaffold(
@@ -31,7 +32,8 @@ class TodayScreen extends StatelessWidget {
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
                 stream: exercisesRef.snapshots(),
-                builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (snapshot.hasError) {
                     return Text('Something went wrong');
                   }
@@ -40,18 +42,22 @@ class TodayScreen extends StatelessWidget {
                     return Text('Loading');
                   }
 
-                  final workouts = snapshot.data!.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+                  final workouts = snapshot.data!.docs
+                      .map((doc) => doc.data() as Map<String, dynamic>)
+                      .toList();
 
                   return ListView.builder(
                     itemCount: workouts.length,
                     itemBuilder: (context, index) {
                       final workout = workouts[index];
                       return CustomListTile(
-                          exercise: workout['exercise_name'] as String,
-                          img: workout['img_url'] as String,
-                          tip: workout['tips'] as String,
-                          direction: workout['directions'],
-                          muscles: workout['muscles'],
+                        exercise: workout['exercise_name'],
+                        img: workout['img_url'],
+                        tip: workout['tips'],
+                        direction1: workout['direction_1'],
+                        direction2: workout['direction_2'],
+                        direction3: workout['direction_3'],
+                        muscle: workout['muscle'],
                       );
                     },
                   );
