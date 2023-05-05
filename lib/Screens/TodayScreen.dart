@@ -15,6 +15,8 @@ class TodayScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     CollectionReference exercisesRef =
         FirebaseFirestore.instance.collection('exercise');
+    CollectionReference patientRef =
+    FirebaseFirestore.instance.collection('patients');
 
     return SafeArea(
       child: Scaffold(
@@ -45,6 +47,7 @@ class TodayScreen extends StatelessWidget {
                   final workouts = snapshot.data!.docs
                       .map((doc) => doc.data() as Map<String, dynamic>)
                       .toList();
+
 
                   return ListView.builder(
                     itemCount: workouts.length,
