@@ -37,59 +37,59 @@ class CustomListTile extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
                   height: MediaQuery.of(context).size.height * 0.1,
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: Image.asset(img)),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
-                width: MediaQuery.of(context).size.width * 0.4,
-                child: Text(
-                  direction1,
-                  style: TextStyle(
-                    fontSize: 14,
-                  ),
+                height: 20,
+              ),
+              Text(
+                direction1,
+                maxLines: 4,
+
+                style: TextStyle(
+                  fontSize: 14,
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
-                width: MediaQuery.of(context).size.width * 0.4,
-                child: Text(
-                  direction2,
-                  style: TextStyle(
-                    fontSize: 14,
-                  ),
+                height: 20,
+              ),
+              Text(
+                direction2,
+                maxLines: 4,
+                style: TextStyle(
+                  fontSize: 14,
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
-                width: MediaQuery.of(context).size.width * 0.4,
-                child: Text(
-                  direction3,
-                  style: TextStyle(
-                    fontSize: 14,
-                  ),
+                height: 20,
+              ),
+              Text(
+                direction3,
+                maxLines: 4,
+                style: TextStyle(
+                  fontSize: 14,
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
-                width: MediaQuery.of(context).size.width * 0.4,
-                child: Text(
-                  tip,
-                  style: TextStyle(
-                    fontSize: 14,
-                  ),
+                height: 20,
+              ),
+              Text(
+                tip,
+                style: TextStyle(
+                  fontSize: 14,
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
-                width: MediaQuery.of(context).size.width * 0.4,
-                child: Text(
-                  muscle,
-                  style: TextStyle(
-                    fontSize: 14,
-                  ),
+                height: 20,
+              ),
+              Text(
+                muscle,
+                style: TextStyle(
+                  fontSize: 14,
                 ),
               ),
             ],
