@@ -9,7 +9,7 @@ class WhatsHurting extends StatelessWidget {
   Get.put(WhatsHurtingController()); //initialize the controller
 
   List<String> bodypartimages = [    'assets/ex1.jpg',    'assets/ex2.jpg',    'assets/ex3.jpg',    'assets/ex4.jpg',    'assets/ex1.jpg',    'assets/ex2.jpg',    'assets/ex3.jpg',    'assets/ex4.jpg',    'assets/ex1.jpg',  ];
-  List<String> bodypartnames = [    'Back',    'Knee',    'Elbow',    'Shoulder',    'Neck',    'Hip',    'Ankle',    'Back',    'Knee',  ];
+  List<String> bodypartnames = [    'Back',    'Knee',    'Elbow',    'Shoulder',    'Neck',    'Hip',    'Ankle',    'Achilles',    'Foot & sole',  ];
 
   @override
   Widget build(BuildContext context) {
