@@ -37,7 +37,7 @@ class CustomListTile extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                   height: MediaQuery.of(context).size.height * 0.1,
@@ -46,16 +46,25 @@ class CustomListTile extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Text(
-                direction1,
-                maxLines: 4,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Directions",style: TextStyle(
+                    fontWeight: FontWeight.w900
+                  ),
+                  ),
+                  Text(
+                    direction1,
+                    maxLines: 4,
 
-                style: TextStyle(
-                  fontSize: 14,
-                ),
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               Text(
                 direction2,
@@ -65,7 +74,7 @@ class CustomListTile extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               Text(
                 direction3,
@@ -75,22 +84,38 @@ class CustomListTile extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
-              Text(
-                tip,
-                style: TextStyle(
-                  fontSize: 14,
-                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Tips",style: TextStyle(
+                      fontWeight: FontWeight.w900
+                  ),),
+                  Text(
+                    tip,
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
               ),
               SizedBox(
                 height: 20,
               ),
-              Text(
-                muscle,
-                style: TextStyle(
-                  fontSize: 14,
-                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Muscle",style: TextStyle(
+                      fontWeight: FontWeight.w900
+                  ),),
+                  Text(
+                    muscle,
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

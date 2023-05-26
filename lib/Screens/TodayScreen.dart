@@ -74,7 +74,7 @@ class TodayScreen extends StatelessWidget {
                       muscle: workout['muscle'] ?? "",
                       )
                               :
-                          Text("");
+                          SizedBox(height: 0,);
                       },
                       );
                     },

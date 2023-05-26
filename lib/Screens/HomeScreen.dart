@@ -29,68 +29,70 @@ class HomeScreen extends StatelessWidget {
           String name = snapshot.data!['name']; // retrieve the name field from the snapshot data
           String bodypartname = snapshot.data!['bodypartname']; // retrieve the name field from the snapshot data
           String bodypartimage = snapshot.data!['bodypartimage']; // retrieve the name field from the snapshot data
-          return Column(
-            children: [
-              Container(
-                height: ht * 0.5,
-                width: wt * 1,
-                color: AppColors.primaryColor,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          MainText(
-                            name: ' Hi ' + name +' ! ',
-                          ),
-                          SizedBox(height: ht * 0.01),
-                          const Text(
-                            'Designed by specialist doctors for optimal treatment and pain reduction',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: AppColors.bgColor,
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  height: ht * 0.5,
+                  width: wt * 1,
+                  color: AppColors.primaryColor,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding:
+                        const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            MainText(
+                              name: ' Hi ' + name +' ! ',
                             ),
-                          ),
-                        ],
+                            SizedBox(height: ht * 0.01),
+                            const Text(
+                              'Designed by specialist doctors for optimal treatment and pain reduction',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: AppColors.bgColor,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: ht * 0.04),
+                ExpansionTile(
+                  collapsedIconColor: AppColors.textfieldcolor,
+                  iconColor: AppColors.textfieldcolor,
+                  title: Text(
+                    'Pain in your ' + bodypartname,
+                    style: TextStyle(
+                        color: AppColors.textfieldcolor, fontWeight: FontWeight.bold),
+                  ),
+                  children: [
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: 3,
+                      itemBuilder: (context, index) {
+                        return RadioListTile(
+                          title: Text('Add pain point $index'),
+                          value: index,
+                          groupValue: _controller.selectedPainIndex.value,
+                          onChanged: (value) {
+                            _controller.setSelectedPainIndex(value!);
+                          },
+                        );
+                      },
                     ),
                   ],
                 ),
-              ),
-              SizedBox(height: ht * 0.04),
-              ExpansionTile(
-                collapsedIconColor: AppColors.textfieldcolor,
-                iconColor: AppColors.textfieldcolor,
-                title: Text(
-                  'Pain in your ' + bodypartname,
-                  style: TextStyle(
-                      color: AppColors.textfieldcolor, fontWeight: FontWeight.bold),
-                ),
-                children: [
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return RadioListTile(
-                        title: Text('Option $index'),
-                        value: index,
-                        groupValue: _controller.selectedPainIndex.value,
-                        onChanged: (value) {
-                          _controller.setSelectedPainIndex(value!);
-                        },
-                      );
-                    },
-                  ),
-                ],
-              ),
-              SizedBox(height: ht * 0.04),
+                SizedBox(height: ht * 0.04),
 
-              ProgressBar_BackPain_Container(wt: wt, ht: ht,image: bodypartimage,injuryname: bodypartname),
-            ],
+                ProgressBar_BackPain_Container(wt: wt, ht: ht,image: bodypartimage,injuryname: bodypartname),
+              ],
+            ),
           );
         },
       ),
